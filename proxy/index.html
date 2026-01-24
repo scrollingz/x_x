@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Proxies - x_x</title>
+<link rel="icon" href="x.ico">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4142423038456679"
+     crossorigin="anonymous"></script>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 600px;
+    padding: 40px;
+    border: 2px solid #ff0000;
+    border-radius: 12px;
+    background: #1c1c1c;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 2px solid #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    background: #fff;
+    color: #000;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>No Proxies</h1>
+  <h2>Access Restricted</h2>
+  <p>It looks like you are using a proxy or VPN. For security reasons, access is not allowed at this time.</p>
+  <a href="/index.html">Return Home</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+// --- Firebase config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyDHwL_6mDDYHDh6mQA8ivSG6cRi6Vx8oWA",
+  authDomain: "x-x-x-x-x-x-x.firebaseapp.com",
+  projectId: "x-x-x-x-x-x-x",
+  storageBucket: "x-x-x-x-x-x-x.firebasestorage.app",
+  messagingSenderId: "869034159472",
+  appId: "1:869034159472:web:c7335dc099b4a7108873b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// --- Change background based on Firestore ---
+auth.onAuthStateChanged(async (user) => {
+  if (!user) return;
+  const userDoc = doc(db, 'users', user.uid);
+  const snapshot = await getDoc(userDoc);
+  if (snapshot.exists() && snapshot.data().bgColor) {
+    document.body.style.background = snapshot.data().bgColor;
+  }
+});
+</script>
+
+<script src="/script.js"></script>
+</body>
+</html>
