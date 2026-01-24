@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>x_x</title>
+<link rel="icon" href="x.ico">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4142423038456679"
+     crossorigin="anonymous"></script>
+
+<style>
+  /* Global Styles */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #0b0b0b;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Header */
+  header { text-align: center; margin-bottom: 40px; }
+  header h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #f5f5f5;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.05rem;
+  }
+  nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: #999; }
+
+  /* Main Content */
+  main {
+    max-width: 850px;
+    width: 100%;
+  }
+
+  section {
+    background: #141414;
+    padding: 28px 32px;
+    border-radius: 10px;
+    margin-bottom: 32px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    line-height: 1.6;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #f5f5f5;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+  }
+
+  p { color: #ccc; margin-bottom: 12px; }
+
+  a { color: #aaa; text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    padding: 40px 0 20px;
+    font-size: 0.82rem;
+    color: #555;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>x_x</h1>
+  <nav>
+    <ul>
+      <li><a href="/index.html">Games</a></li>
+      <li><a href="/proxy">Proxy</a></li>
+      <li><a href="/gc">Group Chat</a></li>
+      <li><a href="/settings">Settings</a></li>
+      <li><a href="/fqa-dmca">FQA & DMCA</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>What is x_x?</strong><br>
+    x_x is a centralized hub that provides access to web-based games. We do not host games but provide links or embeds to publicly available content.</p>
+
+    <p><strong>Do you own the games or their assets?</strong><br>
+    No. All games, images, and assets belong to their respective creators. x_x claims no ownership over any third-party content.</p>
+
+    <p><strong>How can I contact x_x regarding content?</strong><br>
+    You can contact us via email at <a href="mailto:contact@x-x.com">contact@x-x.com</a>. We respond to legitimate copyright inquiries.</p>
+  </section>
+
+  <section>
+    <h2>DMCA & Legal Notice</h2>
+    <p>x_x fully respects intellectual property rights. This website does not claim ownership of any content, including games, images, or other media. All materials remain the property of their respective creators.</p>
+
+    <p>If you believe any content linked on x_x infringes your copyright, please submit a notice to <a href="mailto:contact@x-x.com">contact@x-x.com</a> with sufficient details. We will review and act promptly in accordance with applicable laws.</p>
+
+    <p>By using x_x, you acknowledge that this site functions solely as a non-profit hub for accessing games and does not derive revenue from third-party content.</p>
+  </section>
+</main>
+
+<footer>© 2026 x_x • aliases: boi, 816, cadvo edu, nebula cave</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+// --- Firebase config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyDHwL_6mDDYHDh6mQA8ivSG6cRi6Vx8oWA",
+  authDomain: "x-x-x-x-x-x-x.firebaseapp.com",
+  projectId: "x-x-x-x-x-x-x",
+  storageBucket: "x-x-x-x-x-x-x.firebasestorage.app",
+  messagingSenderId: "869034159472",
+  appId: "1:869034159472:web:c7335dc099b4a7108873b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// --- Dynamic background from Firestore ---
+auth.onAuthStateChanged(async (user) => {
+  if (!user) return;
+  const userDoc = doc(db, 'users', user.uid);
+  const snapshot = await getDoc(userDoc);
+  if (snapshot.exists() && snapshot.data().bgColor) {
+    document.body.style.background = snapshot.data().bgColor;
+  }
+});
+</script>
+
+<script src="/script.js"></script>
+</body>
+</html>
