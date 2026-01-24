@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>x_x</title>
+<link rel="icon" href="x.ico">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  padding:40px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center
+}
+
+header{text-align:center;margin-bottom:24px}
+header h1{font-size:3.2rem;font-weight:300;letter-spacing:3px}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:16px
+}
+nav a{color:#fff;text-decoration:none}
+nav a:hover{color:#aaa}
+
+.search-bar{
+  width:100%;
+  max-width:400px;
+  margin-bottom:40px;
+  display:none
+}
+.search-bar input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  background:#111;
+  color:#fff
+}
+
+main{
+  display:flex;
+  flex-wrap:wrap;
+  gap:36px;
+  justify-content:center;
+  max-width:1200px
+}
+
+/* GAME CARD */
+.game-card{
+  width:220px;
+  height:240px;
+  background:#0d0d0d;
+  border:2px solid #fff;
+  border-radius:14px;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  cursor:pointer;
+  transition:transform .25s,box-shadow .25s
+}
+
+.game-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 30px rgba(255,255,255,.15)
+}
+
+.game-card img{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:10px
+}
+
+.game-title{
+  font-size:.95rem;
+  text-align:center
+}
+
+.status{
+  margin:50px 0;
+  color:#888
+}
+
+#no-results{
+  display:none;
+  color:#888;
+  margin-top:40px
+}
+
+footer{
+  margin-top:auto;
+  padding:40px 0 20px;
+  font-size:.8rem;
+  color:#555
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>x_x</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Games</a></li>
+      <li><a href="/proxy">Proxy</a></li>
+      <li><a href="/gc">Group Chat</a></li>
+      <li><a href="/settings">Settings</a></li>
+      <li><a href="/faq-dmca">FAQ & DMCA</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="search-bar" id="search-bar">
+  <input id="search" placeholder="Search games...">
+</div>
+
+<div id="status" class="status">Loading games...</div>
+<div id="no-results">No games match your search</div>
+
+<main id="game-container"></main>
+
+<footer>© 2026 x_x</footer>
+
+<script>
+let allGames=[];
+const container=document.getElementById("game-container");
+const statusEl=document.getElementById("status");
+const searchInput=document.getElementById("search");
+const noResults=document.getElementById("no-results");
+const searchBar=document.getElementById("search-bar");
+
+searchBar.style.display="block";
+
+fetch("games.json")
+.then(r=>r.json())
+.then(data=>{
+  allGames=data;
+  renderGames(allGames);
+  statusEl.style.display="none";
+})
+.catch(()=>{
+  statusEl.textContent="Failed to load games";
+});
+
+function renderGames(games){
+  container.innerHTML="";
+  if(!games.length){
+    noResults.style.display="block";
+    return;
+  }
+  noResults.style.display="none";
+
+  games.forEach(game=>{
+    const card=document.createElement("div");
+    card.className="game-card";
+    card.onclick=()=>location.href=game.path;
+
+    card.innerHTML=
+      '<img src="'+game.image+'" alt="'+game.name+'">'+
+      '<div class="game-title">'+game.name+'</div>';
+
+    container.appendChild(card);
+  });
+}
+
+searchInput.addEventListener("input",()=>{
+  const term=searchInput.value.toLowerCase();
+  renderGames(allGames.filter(g=>g.name.toLowerCase().includes(term)));
+});
+</script>
+
+</body>
+</html>

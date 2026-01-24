@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - x_x</title>
+<link rel="icon" href="x.ico">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1000px;
+    text-align: left;
+  }
+
+  .text {
+    max-width: 500px;
+  }
+
+  h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    color: #ff2222;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 2px solid #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .image-container img {
+    width: 300px; /* made bigger */
+    max-width: 50vw; /* responsive */
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .image-container img {
+      width: 250px; /* slightly smaller on small screens */
+      margin-top: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="text">
+    <h1>404 :(</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you are looking for does not exist, or you might have taken a wrong turn. Please go back to the homepage.</p>
+    <a href="/index.html">Go Back Home</a>
+  </div>
+  <div class="image-container">
+    <img src="/icons/sadface.jpg" alt="Sad Face">
+  </div>
+</div>
+
+</body>
+</html>

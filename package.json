@@ -1,0 +1,17 @@
+{
+  "name": "why01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "auto-deploy": "nodemon --watch public --watch functions --ext js,html,css,json --exec \"firebase deploy\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
