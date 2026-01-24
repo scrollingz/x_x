@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>x_x Settings</title>
+<link rel="icon" href="x.ico" />
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4142423038456679"
+     crossorigin="anonymous"></script>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header { margin-bottom: 24px; text-align: center; }
+  header h1 { font-size: 3rem; font-weight: 300; letter-spacing: 3px; }
+
+  nav ul {
+    list-style:none;
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    margin-top:16px;
+    font-size:1.1rem;
+  }
+  nav a { color:#fff; text-decoration:none; transition: color 0.2s; }
+  nav a:hover { color:#aaa; }
+
+  .settings-container {
+    width: 100%;
+    max-width: 400px;
+    background: #111;
+    padding: 28px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.7);
+  }
+
+  .settings-container h2 { margin-bottom: 16px; }
+
+  label { display: block; margin-top: 12px; font-size: 0.95rem; margin-bottom: 6px; }
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: #eee;
+    font-size: 1rem;
+  }
+  input:focus { background: #333; outline: none; }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin: 16px 0 10px;
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: #444; }
+
+  .logout-btn {
+    background: #3a1c1c;
+  }
+  .logout-btn:hover {
+    background: #5a2222;
+  }
+
+  .error-msg { color: #ff6666; min-height: 22px; font-size: 0.9rem; margin-top: 6px; }
+  .success-msg { color: #66ff88; min-height: 22px; font-size: 0.9rem; margin-top: 6px; }
+
+  footer { margin-top: auto; padding: 40px 0 20px; font-size: 0.82rem; color: #555; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Settings</h1>
+  <nav>
+    <ul>
+      <li><a href="/index.html">Games</a></li>
+      <li><a href="/proxy">Proxy</a></li>
+      <li><a href="/gc">Group Chat</a></li>
+      <li><a href="/settings">Settings</a></li>
+      <li><a href="/faq-dmca">FQA & DMCA</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="settings-container">
+
+  <h2>Appearance</h2>
+  <label for="bg-color">Background Color</label>
+  <input type="color" id="bg-color" value="#000000">
+
+  <h2>Account</h2>
+  <label for="new-email">Change Email</label>
+  <input type="email" id="new-email" placeholder="New Email">
+
+  <label for="new-password">Change Password</label>
+  <input type="password" id="new-password" placeholder="New Password (min 6 chars)">
+
+  <label for="new-username">Change Username</label>
+  <input type="text" id="new-username" placeholder="New Username">
+
+  <button id="save-settings">Save Changes</button>
+  <button id="logout-btn" class="logout-btn">Log Out</button>
+
+  <div id="settings-msg" class="error-msg"></div>
+</div>
+
+<footer>© 2026 x_x • aliases: boi, 816, cadvo edu, nebula cave</footer>
+
+<!-- Page logic -->
+<script type="module" src="/settings/settings.js"></script>
+
+<!-- Shared site-wide script -->
+<script src="/script.js"></script>
+
+</body>
+</html>
