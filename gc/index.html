@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon - x_x</title>
+<link rel="icon" href="x.ico">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4142423038456679"
+     crossorigin="anonymous"></script>
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1000px;
+    text-align: left;
+  }
+
+  .text {
+    max-width: 500px;
+  }
+
+  h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #ffcc00;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 2px solid #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .image-container img {
+    width: 300px;
+    max-width: 50vw;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+      gap: 30px;
+    }
+
+    .image-container img {
+      width: 250px;
+      margin-top: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="text">
+    <h1>Coming Soon</h1>
+    <h2>Something exciting is on the way!</h2>
+    <p>We are working hard behind the scenes. Stay tuned and check back soon.</p>
+    <a href="/index.html">Go Back Home</a>
+  </div>
+  <div class="image-container">
+    <img src="/icons/flight-reacts-evil-laugh.gif" alt="Coming Soon GIF">
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+// --- Firebase config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyDHwL_6mDDYHDh6mQA8ivSG6cRi6Vx8oWA",
+  authDomain: "x-x-x-x-x-x-x.firebaseapp.com",
+  projectId: "x-x-x-x-x-x-x",
+  storageBucket: "x-x-x-x-x-x-x.firebasestorage.app",
+  messagingSenderId: "869034159472",
+  appId: "1:869034159472:web:c7335dc099b4a7108873b5"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// --- Change background based on Firestore ---
+auth.onAuthStateChanged(async (user) => {
+  if (!user) return;
+  const userDoc = doc(db, 'users', user.uid);
+  const snapshot = await getDoc(userDoc);
+  if (snapshot.exists() && snapshot.data().bgColor) {
+    document.body.style.background = snapshot.data().bgColor;
+  }
+});
+</script>
+
+<script src="/script.js"></script>
+</body>
+</html>
