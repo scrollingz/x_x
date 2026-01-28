@@ -1,0 +1,116 @@
+-- ===============================
+-- SERVICES
+-- ===============================
+local Players = game:GetService("Players")
+local TextChatService = game:GetService("TextChatService")
+local RunService = game:GetService("RunService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local lp = Players.LocalPlayer
+local channel = TextChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral", 10)
+
+-- ===============================
+-- CHAT MESSAGES
+-- ===============================
+local messages = {
+    "joinnn /m2x im selling cheap nitroowowowo",
+    "headless & korb acc w/ 3l user for sale rn at /m2x",
+    "selling cheap rubox at gg_/m2x!?!?!?",
+    "hosting a 7k rbx gw in /m2x!!!",
+    "join /m2x for the best cheap services + gws!!!!!",
+    "headless account on sale for only $200 at /m2x",
+    "rich ppl in /m2x",
+    "hosting c5555m stages each 100 members ☠️",
+    "active market /m2x"
+}
+
+local msgIndex = 1
+
+-- ===============================
+-- ANTI-AFK (MOVEMENT)
+-- ===============================
+task.spawn(function()
+    while true do
+        task.wait(240) -- ~4 minutes
+        pcall(function()
+            local char = lp.Character
+            if not char then return end
+
+            local hum = char:FindFirstChildOfClass("Humanoid")
+            local root = char:FindFirstChild("HumanoidRootPart")
+            if not (hum and root) then return end
+
+            hum:MoveTo(root.Position + Vector3.new(math.random(-1,1),0,math.random(-1,1)))
+            hum.Jump = true
+        end)
+    end
+end)
+
+-- ===============================
+-- ANTI-AFK (W KEY)
+-- ===============================
+task.spawn(function()
+    while true do
+        task.wait(13 * 60)
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.W, false, game)
+        task.wait(1)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.W, false, game)
+    end
+end)
+
+-- ===============================
+-- SEQUENTIAL TELEPORT + FLOAT
+-- ===============================
+local floatHeight = 4
+local stayTime = 3
+
+task.spawn(function()
+    while true do
+        for _, plr in ipairs(Players:GetPlayers()) do
+            if plr ~= lp and plr.Character then
+                local theirRoot = plr.Character:FindFirstChild("HumanoidRootPart")
+                local myChar = lp.Character
+                local myRoot = myChar and myChar:FindFirstChild("HumanoidRootPart")
+
+                if theirRoot and myRoot then
+                    -- Send chat
+                    pcall(function()
+                        channel:SendAsync(messages[msgIndex])
+                    end)
+                    msgIndex = (msgIndex % #messages) + 1
+
+                    -- Float body movers
+                    local bp = Instance.new("BodyPosition")
+                    bp.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+                    bp.P = 1e5
+                    bp.D = 1200
+                    bp.Parent = myRoot
+
+                    local bg = Instance.new("BodyGyro")
+                    bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
+                    bg.P = 1e5
+                    bg.Parent = myRoot
+
+                    local start = tick()
+                    while tick() - start < stayTime and plr.Character and theirRoot.Parent do
+                        bp.Position = theirRoot.Position + Vector3.new(0, floatHeight, 0)
+                        bg.CFrame = CFrame.new(myRoot.Position, theirRoot.Position)
+                        RunService.Heartbeat:Wait()
+                    end
+
+                    bp:Destroy()
+                    bg:Destroy()
+                end
+            end
+        end
+    end
+end)
+
+-- ===============================
+-- RESPAWN SAFETY
+-- ===============================
+lp.CharacterAdded:Connect(function()
+    task.wait(1)
+end)
+
+print("Sequential teleport + floating + spam + anti-AFK running")
